@@ -1,0 +1,26 @@
+name: T-1/T-3 Verification
+on: [push, pull_request]
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install mpmath numpy
+      - name: Run T-1 Hopf analysis
+        run: python t1_hopf_final.py
+      - name: Run T-3 Beltrami analysis
+        run: python t3_beltrami_final.py
+      - name: Run T-1 gate (alpha^-1)
+        run: python tuft_alpha_identity.py
+      - name: Run T-3 gate (g-2)
+        run: python tuft_gminus2_closed.py
+      - name: Run T-3 spectral
+        run: python tuft_s7_spectral.py
+      - name: Run UV completion
+        run: python uv_dynamical_gn_complete.py
+      - name: Run neutrino VEV dynamics
+        run: python neutrino_vev_dynamics.py
