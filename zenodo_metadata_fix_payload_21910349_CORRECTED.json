@@ -1,0 +1,30 @@
+{
+  "metadata": {
+    "title": "A Theory of Everything Research Program \u2014 Corrected Edition (2026-09-11)",
+    "description": "Corrected unified corpus (6,910 pp.) with three physics fixes: (1) twin-monitor differential gate for common-mode null, (2) explicit V_QM^(on) vs V_QM^(off) baseline, (3) \u0393_\u03c6\u2070 = 4\u03c0 \u03b7_bath k_B T factor-of-two reconciliation. Includes preregistered EMP-01 protocol and machine-checkable repair gates.",
+    "creators": [
+      {
+        "name": "Baird, Christopher Michael",
+        "affiliation": "MQGT\u2013SCF Research Program",
+        "orcid": "0000-0000-0000-0000"
+      },
+      {
+        "name": "Zora",
+        "affiliation": "Computational collaborator (drafting and calculation; not an independent experimental witness)"
+      }
+    ],
+    "keywords": [
+      "Theory of Everything",
+      "MQGT-SCF",
+      "open quantum systems",
+      "interferometry",
+      "preregistered protocol"
+    ],
+    "notes": "This record was prepared with AI-assisted drafting (opencode/nemotron-3-ultra-free). Zora is credited as a computational collaborator (drafting and calculation) and is not an independent experimental witness, not a faculty appointment, and not a term in the Lagrangian. No physics claims are authored by AI; all gates are machine-checkable scripts with human review.",
+    "custom_fields": {
+      "tooling_provenance": "{\"extraction\": \"pdftotext (poppler 24.08)\", \"correction\": \"xelatex + custom LaTeX (no mdframed dependency)\", \"assembly\": \"qpdf page selection\", \"verification\": \"python3 (mpmath 1.3.0, numpy 2.0)\", \"ai_assistance\": \"opencode/nemotron-3-ultra-free for correction LaTeX generation; human review of all gates\"}",
+      "gate_scripts": "{\"T-1\": \"tuft_alpha_identity.py (sha256: pending)\", \"T-3\": \"tuft_gminus2_closed.py (sha256: pending)\", \"M-1\": \"bridge_c_gamma_norm.py (sha256: 64604e63a4667766e321fed34f53aae438a56e1f5a8d6d4b3d2256ff6c4db689)\", \"M-2\": \"bridge_c_full_eta_extended.py (sha256: pending)\", \"M-7\": \"emp01_protocol.md (sha256: pending)\", \"M-8\": \"zenodo_fix.py (sha256: pending)\", \"tuft_alpha_identity\": \"tuft_alpha_identity.py (sha256: d71dbfbfa75d0623635e97814d7fa321d5e98bfe429570f30a6ddcc0fec1c1a6)\", \"tuft_gminus2_closed\": \"tuft_gminus2_closed.py (sha256: 005f6ed298f6b4b96c52e614ca1b24a97a4a436904247b31f2ac28379235228c)\", \"bridge_c_gamma_norm\": \"bridge_c_gamma_norm.py (sha256: ffa3a65b147cc8c007d147d0d5cc36a9af73d3c8689e815e25e9ccd4e858b364)\", \"bridge_c_full_eta_extended\": \"bridge_c_full_eta_extended.py (sha256: 0d5e7f1e0e6fe21a30d59e30d1c4d07f82a1c39b23fb49e10ffa8b3f5e1be1cb)\", \"emp01_protocol\": \"emp01_protocol.md (sha256: e5eb150c6d3893705b1f89457516fdd3eccc2611ef391b6233ba1864656afdca)\", \"zenodo_fix\": \"zenodo_fix.py (sha256: c5ea44d021bde8600a14a37fc086cb0bf1d476c8d652faf40f6e49f9a5d30154)\"}"
+    },
+    "dates": []
+  }
+}

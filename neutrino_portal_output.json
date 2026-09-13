@@ -1,0 +1,10 @@
+{
+  "model": "E as Dirac mass source for neutrinos (Model C)",
+  "Lagrangian": "L_\u03bd = y_\u03bd E \u03bd\u0304_L \u03bd_R + h.c.",
+  "y_nu_per_generation": 0.1976,
+  "sum_m_nu_eV": 0.05928,
+  "E_vev_eV": 0.1,
+  "consistent_with_MQGT": true,
+  "TUFT_match": 0.05928,
+  "status": "NATURAL - y_\u03bd ~ 0.2 per generation"
+}
