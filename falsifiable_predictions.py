@@ -1,144 +1,94 @@
 #!/usr/bin/env python3
+"""Gate-1 prediction report for the corrected EMP-01 protocol.
+
+This file is a consistency/reporting tool, not an experimental result. The
+primary prediction is the corrected twin-monitor relation used by
+``emp01_protocol.md``:
+
+    alpha_on = 1/2 * Gamma_phi_0 * T * (lambda(DeltaE)^2 - 1)
+
+The older ``exp(-Gamma*T*DeltaX**2)`` expression is deliberately not used
+here: it belongs to a different illustrative localization model and must not
+be presented as the EMP-01 estimand.
 """
-Falsifiable Predictions for Φc/E (Consciousness/Ethics Scalars)
 
-SPECULATIVE: These predictions depend on the consciousness/ethics scalar interpretation
-which is not experimentally validated. They are derived from the MQGT-SCF framework
-but require experimental verification.
-"""
-from mpmath import mp, pi, exp, sqrt, nstr
+import math
 
-mp.dps = 50
 
-print("=== Falsifiable Predictions for Φc/E Scalars ===")
-print("SPECULATIVE: Consciousness/ethics scalar interpretation not experimentally validated.\n")
+def _fmt(value):
+    return format(value, ".12g")
 
-# ============================================================
-# 1. Interferometric Visibility Decay (Primary Falsifier)
-# ============================================================
-# V/V₀ = exp(-Γ T ΔX²)
-# Γ = γ_k(E) η² ΔE²
-# γ_k(E) = γ_k⁰ e^{ηE}
-# η = 0.5, γ_k⁰ from Bridge C/D
 
-print("=== 1. Interferometric Visibility Decay (Primary Falsifier) ===")
-print("Prediction: V/V₀ = exp(-Γ T ΔX²)")
-print("  Γ = γ_k(E) η² ΔE²")
-print("  γ_k(E) = γ_k⁰ e^{ηE}")
-print("  η = 0.5 (from Bridge C/D)")
-print()
-print("Falsification: If visibility decay deviates from this form,")
-print("  the E-scalar modulation of GKSL rates is falsified.")
-print()
+def gate_lambda(delta_e, eta):
+    """Return lambda(DeltaE) under the explicitly assumed exponential gate.
 
-# Numerical example
-eta = mp.mpf('0.5')
-gamma0 = mp.mpf('1e3')  # s⁻¹ (example)
-DeltaE = mp.mpf('0.1')  # eV
-T = mp.mpf('1e-4')      # s
-DeltaX = mp.mpf('1e-6') # m
+    eta is dimensionful unless the caller has declared a normalized field
+    coordinate. The numerical values in ``main`` are illustrative only.
+    """
+    return math.exp(eta * delta_e / 2)
 
-E = mp.mpf('0.1')  # eV
-gamma_E = mp.mpf('1e3') * exp(mp.mpf('0.5') * mp.mpf('0.1'))
-Gamma = gamma_E * eta**2 * DeltaE**2
-V_ratio = exp(-Gamma * T * DeltaX**2)
-print("Example: E=0.1 eV, ΔE=0.1 eV, T=10⁻⁴ s, ΔX=10⁻⁶ m")
-print("  γ(E) = " + nstr(gamma_E, 4) + " s⁻¹")
-print("  Γ = " + nstr(Gamma, 4) + " s⁻¹")
-print("  V/V₀ = " + nstr(V_ratio, 6))
-print()
 
-# ============================================================
-# 2. Fifth-Force Profiles
-# ============================================================
-# E-mediated Yukawa potential: V(r) = α_E (e^{-m_E r} / r)
-# m_E ~ 10⁻⁴ eV → range ~ 2 mm
+def alpha_on(gamma_phi_0, flight_time, delta_e, eta):
+    """EMP-01 alpha relative to the monitor-on, DeltaE=0 reference."""
+    # expm1 retains the small signal when eta*DeltaE is near machine epsilon.
+    return 0.5 * gamma_phi_0 * flight_time * math.expm1(eta * delta_e)
 
-print("=== 2. Fifth-Force Profiles ===")
-m_E = mp.mpf('1e-4')  # eV
-hbar_c = mp.mpf('197.327')  # MeV·fm = 197.327 eV·nm
-range_nm = hbar_c / (m_E * 1e-9)  # nm
-range_mm = range_nm / 1e6
-print("m_E = " + nstr(m_E, 4) + " eV")
-print("Range = " + nstr(range_mm, 4) + " mm")
-print("Yukawa potential: V(r) = α_E (e^(-r/λ) / r)")
-print("λ = " + nstr(range_mm, 4) + " mm")
-print()
-print("Falsification: Torsion balance (Eöt-Wash) constrains")
-print("  α_E < 10⁻³ at mm range. If not seen, E-scalar falsified.")
-print()
 
-# ============================================================
-# 3. QRNG Bias with Ethical Intention (emp01 Protocol)
-# ============================================================
-# emp01_protocol.md: QRNG bias with ethical intention
-# Prediction: Bias Δp = η ⟨E⟩ / (2π) ~ 0.5 * 0.1 / (2π) ≈ 0.008
+def alpha_off(gamma_phi_0, flight_time, delta_e, eta):
+    """Alpha relative to the monitor-off reference (no ``-1`` term)."""
+    h = math.exp(eta * delta_e)
+    return 0.5 * gamma_phi_0 * flight_time * h
 
-print("=== 3. QRNG Bias with Ethical Intention (emp01 Protocol) ===")
-eta = mp.mpf('0.5')
-E_avg = mp.mpf('0.1')  # eV
-bias = eta * E_avg / (2 * pi)
-print("Predicted bias: Δp = η⟨E⟩/(2π) = " + nstr(bias, 6))
-print("  = " + nstr(float(bias)*100, 4) + "%")
-print()
-print("Falsification: emp01_protocol.md preregisters this test.")
-print("  If bias not detected at 5σ with N_tot > 4×10⁸, E-scalar falsified.")
-print()
 
-# ============================================================
-# 4. Neutrino Sector (Dirac vs Majorana)
-# ============================================================
-# E-scalar Dirac portal → purely Dirac neutrinos
-# Majorana mass = 0 (testable via 0νββ decay)
+def alpha_n3(gamma_phi_0_n3, gamma_phi_0_n1, flight_time):
+    """N3 thermal/bath contrast relative to contemporaneous N1."""
+    return 0.5 * flight_time * (gamma_phi_0_n3 - gamma_phi_0_n1)
 
-print("=== 4. Neutrino Nature: Purely Dirac ===")
-print("Prediction: Σm_ν = 0.05928 eV (normal ordering)")
-print("  m₁ ≈ 0, m₂ ≈ 0.0087 eV, m₃ ≈ 0.0496 eV")
-print("  NO Majorana mass term → 0νββ decay forbidden")
-print()
-print("Falsification: Observation of 0νββ decay")
-print("  would falsify pure Dirac portal.")
-print()
 
-# ============================================================
-# 5. Neutrino Mass Ordering
-# ============================================================
-print("=== 5. Neutrino Mass Ordering ===")
-print("Prediction: Normal ordering (m₁ ≈ 0)")
-print("  m₁ = 0.00097 eV, m₂ = 0.0087 eV, m₃ = 0.0496 eV")
-print("  Σm_ν = 0.05928 eV (exact TUFT match)")
-print()
-print("Falsification: Inverted ordering or m₁ > 0.01 eV")
-print("  would falsify the E-scalar Dirac portal mechanism.")
-print()
+def protocol_predictions(gamma_phi_0, flight_time, eta, delta_e, gamma_phi_0_n3):
+    """Return the four corrected protocol predictions for an illustration."""
+    return {
+        "N0_alpha_on_offset": -0.5 * gamma_phi_0 * flight_time,
+        "N0_alpha_off": 0.0,
+        "N1_alpha_on": 0.0,
+        "N1_alpha_off": 0.5 * gamma_phi_0 * flight_time,
+        "N2_alpha_on": alpha_on(gamma_phi_0, flight_time, delta_e, eta),
+        "N2_alpha_off": alpha_off(gamma_phi_0, flight_time, delta_e, eta),
+        "N3_alpha_on": alpha_n3(gamma_phi_0_n3, gamma_phi_0, flight_time),
+        "N3_alpha_off": 0.5 * gamma_phi_0_n3 * flight_time,
+    }
 
-# ============================================================
-# 6. Fifth-Force Constraints from Eöt-Wash
-# ============================================================
-print("=== 6. Eöt-Wash Torsion Balance Constraints ===")
-print("Current limit: α_E < 10⁻³ at λ ~ 1 mm")
-print("MQGT prediction: α_E ~ y_ν² / (4π) ~ 0.003")
-print("  (close to current bound — testable!)")
-print()
-print("Falsification: If next-gen Eöt-Wash excludes α_E > 10⁻⁴,")
-print("  the E-scalar coupling is falsified.")
-print()
 
-# ============================================================
-# 7. Summary of Falsifiable Predictions
-# ============================================================
-print("=== Summary: Falsifiable Predictions ===")
-print("""
-| # | Prediction | Experiment | Falsification Threshold |
-|---|------------|------------|------------------------|
-| 1 | V/V₀ = exp(-ΓTΔX²) | Interferometer | Deviation > 5σ |
-| 2 | Fifth force range ~2mm | Torsion balance | α_E < 10⁻³ at 2mm |
-| 3 | QRNG bias Δp ~ 0.8% | emp01 protocol | No bias at 5σ, N>4×10⁸ |
-| 4 | Purely Dirac ν | 0νββ decay | 0νββ observed |
-| 5 | Normal ordering m₁≈0 | JUNO/DUNE | m₁ > 0.01 eV |
-| 6 | α_E ~ 0.003 | Eöt-Wash | α_E < 10⁻⁴ excluded |
+def main():
+    print("=== EMP-01 Gate-1 Prediction Reconciliation ===")
+    print("STATUS: illustrative equations only; no experimental data run.\n")
+    print("Corrected estimand:")
+    print("  DeltaE = E_L - E_R")
+    print("  lambda(0) = 1")
+    print("  alpha_on = 1/2 Gamma_phi^(0) T (lambda(DeltaE)^2 - 1)")
+    print("  alpha_off = 1/2 Gamma_phi^(0) T lambda(DeltaE)^2")
+    print("  N1 is the common-mode DeltaE=0 null.")
+    print("  N3 changes the bath rate at fixed DeltaE; it does not estimate eta.\n")
 
-ALL predictions are falsifiable. The framework stands or falls
-by these tests. Code and protocols are open for independent replication.
-""")
+    # Worked illustration copied in spirit from the protocol, explicitly
+    # labelled as non-preregistered. eta is shown with eV^-1 units here.
+    gamma0 = 1000.0
+    flight_time = 1e-4
+    eta = 0.5
+    delta_e = 0.1
+    # For the illustration, let the Ohmic rate scale linearly with bath
+    # temperature: Gamma3 = Gamma0 * (310 K / 300 K).
+    gamma3 = gamma0 * (310.0 / 300.0)
+    predictions = protocol_predictions(gamma0, flight_time, eta, delta_e, gamma3)
+    print("Illustration only: Gamma0=1000 s^-1, T=1e-4 s, eta=0.5 eV^-1,")
+    print("                 DeltaE=0.1 eV, T_bath,N3=310 K")
+    for name, value in predictions.items():
+        print(f"  {name} = {_fmt(value)}")
 
+    print("\nExcluded from the EMP-01 primary estimand:")
+    print("  V/V0 = exp(-Gamma*T*DeltaX^2)  [different illustrative model]")
+    print("  QRNG bias, fifth-force, and neutrino claims  [separate speculative channels]")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,9 @@
+row_id,coupler,E_L,E_R,E_unit,T,T_bath,N_tot,V_hat,V_hat_err,baseline,phase_scanned,block,data_kind,measurement_id,e_meter_ok,e_from_visibility,e_meter_id,references_frozen,reference_v_on,reference_v_on_err,reference_on_id,reference_v_off,reference_v_off_err,reference_off_id
+N0,0,0.2,0.2,eV,0.0001,300,16000000,0.9987075415572229,0.00001,off,1,0,synthetic,synthetic:b0:N0,true,false,synthetic:meter,true,,,,0.9987075415572229,0.00001,synthetic:cal-off-0
+N1,1,0.2,0.2,eV,0.0001,300,16000000,0.95,0.00001,on,1,0,synthetic,synthetic:b0:N1,true,false,synthetic:meter,true,0.95,0.00001,synthetic:cal-on-0,,,
+N2,1,0.30000000000000004,0.2,eV,0.0001,300,16000000,0.9475677418676953,0.00001,on,1,0,synthetic,synthetic:b0:N2,true,false,synthetic:meter,true,,,,,,
+N3,1,0.2,0.2,eV,0.0001,310,16000000,0.9484179853783917,0.00001,on,1,0,synthetic,synthetic:b0:N3,true,false,synthetic:meter,true,,,,,,
+N0,0,0.2,0.2,eV,0.0001,300,16000000,0.9987075415572229,0.00001,off,1,1,synthetic,synthetic:b1:N0,true,false,synthetic:meter,true,,,,0.9987075415572229,0.00001,synthetic:cal-off-1
+N1,1,0.2,0.2,eV,0.0001,300,16000000,0.95,0.00001,off,1,1,synthetic,synthetic:b1:N1,true,false,synthetic:meter,true,0.95,0.00001,synthetic:cal-on-1,,,
+N2,1,0.1,0.2,eV,0.0001,300,16000000,0.9523194291842609,0.00001,off,1,1,synthetic,synthetic:b1:N2,true,false,synthetic:meter,true,,,,,,
+N3,1,0.2,0.2,eV,0.0001,310,16000000,0.9484179853783917,0.00001,off,1,1,synthetic,synthetic:b1:N3,true,false,synthetic:meter,true,,,,,,

@@ -1,0 +1,51 @@
+{
+  "status": "DRAFT_NOT_REGISTERED",
+  "scope": "Proposed EMP-01 addendum; no experimental parameters are frozen by this file.",
+  "source_protocol_sha256": "e5eb150c6d3893705b1f89457516fdd3eccc2611ef391b6233ba1864656afdca",
+  "experiment": {
+    "lab": null,
+    "apparatus_id": null,
+    "path_separation_m": null,
+    "flight_time_s": null,
+    "bath_temperature_K": null,
+    "bath_coupling_and_spectrum": null,
+    "gamma_phi_0_per_s": null,
+    "gamma_phi_0_uncertainty_per_s": null
+  },
+  "field": {
+    "operational_definition_of_E": null,
+    "actuator_and_coupling_model": null,
+    "independent_meter_and_calibration": null,
+    "unit_conversion_to_eV": null,
+    "allowed_DeltaE_eV_interval": null,
+    "common_mode_tolerance_eV": null,
+    "gate_law_and_domain": null
+  },
+  "design": {
+    "N_tot_per_setting": null,
+    "blocks_and_interleaving": null,
+    "baseline_per_row": null,
+    "reference_acquisition_and_independence": null,
+    "reference_fit_covariance": null,
+    "blinding_and_half_split": null
+  },
+  "analysis": {
+    "alpha_min": null,
+    "z": null,
+    "N0_independent_null_band": null,
+    "N1_independent_null_band": null,
+    "N0_offset_band": null,
+    "N3_bath_model_and_band": null,
+    "nuisance_budget_and_covariance_model": null,
+    "eta_estimator_and_uncertainty": null,
+    "global_failure_suppression": "Suppress all eta estimates if any preregistered predicate fails."
+  },
+  "freeze": {
+    "reviewer": null,
+    "record_url": null,
+    "timestamp_UTC": null,
+    "protocol_addendum_sha256": null,
+    "analysis_commit": null,
+    "input_schema_sha256": null
+  }
+}

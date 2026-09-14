@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "scope": "Gate-1 software revision and preserved source files; synthetic validation only",
+  "base_commit": "9ffae546a59bd485d278c0fc5da4105984ef09ef",
+  "source_deposit": "https://zenodo.org/records/22738328",
+  "files": {
+    "emp01_analyzer.py": "492eb547ac5a7b24f50bbac21f98a4795c2bd9ff3ea4027d43a5d7600072f748",
+    "falsifiable_predictions.py": "3c0b993eced96080e6d6905f40def3238c545e95f09b81332eadfb9673973f17",
+    "test_emp01_gate1.py": "10f7e2168c042a10e0a57889814ad3ef4431d601c425610f89fca5851ad88dff",
+    "fixtures/emp01_gate1_synthetic.csv": "ae8320ee87204241b143546bd33851fc8bbdd6c99636004878a5871bd4d78126",
+    "GATE1_RECONCILIATION.md": "57220f472cab81410d0a9dc8ea8cc152bdedf512b2fe88ae929235c4ceedcf44",
+    "EMP01_PREREGISTRATION_DRAFT.json": "466883407f9059a51670a9d6a3974c0cc8aad516c8eeb08520939a790e7f919a",
+    "README.md": "41eeb2676c3d91a4e0f1922bbc13ce36819f8bd3f407293d63415c42bab1f7f8",
+    ".github/workflows/emp01_gate1.yml": "bec63d41e2b3468dc1f9c4f31a4dcf489a609690e69a27c3ed95b75877388248",
+    "verify_gate1_manifest.py": "b79338d7b0fe13852a726af02b1af25dfece17c35ea239803d55429308983fa8",
+    "emp01_protocol.md": "e5eb150c6d3893705b1f89457516fdd3eccc2611ef391b6233ba1864656afdca",
+    "Reservoir_Protocol_Note_2026-09-11_CORRECTED.pdf": "bb6859bf3d4f81082a4ac57970ed019fe8808148c96c7cf58a5a3b0c4e36bf27",
+    "Reservoir_Protocol_Note_2026-09-11_CORRECTED.tex": "c307980f63b95affd3496fccd16d735054a2f5d5748cf5e969ad34a94f108d6b",
+    "emp01_synthetic.csv": "b101e66092cba74fe95089a890903ee3483ae4b30d46b59e40b13018031f6412"
+  }
+}
