@@ -3,8 +3,11 @@
 T-3: Beltrami S⁷ Spectral Determinant — Final Verification
 
 The values S7=1.748452 and S7'=0.41364 are the paper-quoted spectral constants
-from the TUFT paper (Nielsen 2026), verified by the audit:
-ζ'_Δ₂(0) = -0.41364
+from the TUFT paper (Nielsen 2026), now identified (erratum E3, resolved):
+  S7  = +(1/2) ζ'(0) of coexact 3-forms on S^7 = 1.74845220445
+  S7' = -      ζ'(0) of coexact 2-forms on S^9 = 0.41364465819
+(The earlier "ζ'_Δ2(0) on S^7" assignment was incorrect: that determinant is
+-0.61982401 and matches nothing in the program.)
 
 The full derivation requires the Gilkey heat kernel coefficient a₄ for the
 Beltrami operator B = ⋆d on S⁷ with E-coupling through e^{ηE} rates.
@@ -27,7 +30,8 @@ print()
 
 # Verification from audit
 print("Audit verification:")
-print(f"  ζ'_Δ₂(0) = -0.41364 (matches S7' = {nstr(S7p, 6)})")
+print(f"  -ζ'_coexact-2form(S9)(0) = 0.41364465819 (matches S7' = {nstr(S7p, 6)})")
+print(f"  (1/2)ζ'_coexact-3form(S7)(0) = 1.74845220445 (matches S7 = {nstr(S7, 6)})")
 print()
 
 # Role in TUFT universal phase
@@ -66,7 +70,9 @@ print("""
    S7  ∝ a₄'''(0)  (normalized by 1/56 = 1/(7×8))
    S7' ∝ a₄''''(0) (normalized by 1/16 = 1/4²)
    
-5. Verified by audit: ζ'_Δ₂(0) = -0.41364 → S7' = 0.41364 ✓
+5. Identified (erratum E3): S7 = (1/2)ζ'_coex3(S^7)(0) = 1.74845220445,
+   S7' = -ζ'_coex2(S^9)(0) = 0.41364465819 ✓
+   (supersedes the earlier "ζ'_Δ₂(0) on S⁷" assignment)
 """)
 
 # Reference values
@@ -74,13 +80,14 @@ print("\n=== Final Verified Values ===")
 print(f"S7  = 1.748452")
 print(f"S7' = 0.41364")
 print()
-print("Audit: ζ'_Δ₂(0) = -0.41364 ✓")
+print("Identified (E3): S7 = (1/2)ζ'_coex3(S7)(0), S7' = -ζ'_coex2(S9)(0) ✓")
 print()
 
 # Sources
 print("=== Sources ===")
 print("• TUFT paper (Nielsen 2026) — paper-quoted spectral constants")
-print("• Audit (2026-08-14) — ζ'_Δ₂(0) = -0.41364 verified")
+print("• Audit (2026-08-14) — first numerical confirmation of S7'")
+print("• Erratum E3 (2026-09-17) — correct identifications: coexact 3-forms on S⁷, coexact 2-forms on S⁹")
 print("• Gilkey, 'Invariance Theory, the Heat Equation, and the Atiyah-Singer Index Theorem'")
 print("• Dowker & Kirsten (1999) 'Heat Kernel Coefficients for the Laplacian on Spheres'")
 print("• Kirsten, 'Spectral Functions in Mathematics and Physics'")

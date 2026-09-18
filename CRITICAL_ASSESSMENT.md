@@ -33,6 +33,9 @@
 
 3. **T-3 Spectral Constants** — S7 = 1.748452, S7' = 0.41364
    - Verified: ζ′_Δ2(0) = −0.41364
+     (superseded by erratum E3, 2026-09-17: S7 = ½ζ′(0) of coexact 3-forms on S⁷ = 1.74845220445;
+     S7′ = −ζ′(0) of coexact 2-forms on S⁹ = 0.41364465819; ζ′_Δ2(0) on S⁷ = −0.61982401
+     is a different operator on a different sphere and matches nothing in the program)
    - Implementation: `t3_beltrami_complete.py` (Gilkey/Dowker-Kirsten)
 
 4. **T-1 Hopf Analysis** — Framework ready

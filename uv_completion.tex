@@ -25,7 +25,7 @@
 \maketitle
 
 \begin{abstract}
-We perform an asymptotic safety fixed-point search in the Bridge D truncation (2 real scalars with 1/24 diagonal quartics, 1/4 portal) extended with Narain-Percacci-Wirth gravitational corrections. The gravitational coupling is fixed at the corpus's reconstructed 33-coordinate joint fixed point: $g_N^* = 1.7621271$. \textbf{Result: No non-Gaussian fixed point found.} All 91 trajectories from the positivity cone flow to the Gaussian fixed point ($\lambda=g=0$) in the UV. Gravity drives the matter sector to Gaussian in the UV. Consistent with corpus statement: ``matter sector is Gaussian at joint FP.''
+We perform an asymptotic safety fixed-point search in the Bridge D truncation (2 real scalars with 1/24 diagonal quartics, 1/4 portal) extended with Narain-Percacci-Wirth gravitational corrections. The gravitational coupling is fixed at the corpus's reconstructed 33-coordinate joint fixed point: $g_N^* = 1.7621271$. \textbf{Result: No non-Gaussian fixed point exists \emph{in the perturbative domain} (positivity cone, couplings $\lesssim 1$); all UV trajectories from that domain flow to the Gaussian fixed point ($\lambda=g=0$).} (Exact non-Gaussian fixed points of the truncated system exist at $\lambda\approx 26.6$, $g\approx 8.9$, far outside the one-loop validity domain; erratum E1.) All 91 trajectories from the positivity cone flow to the Gaussian fixed point ($\lambda=g=0$) in the UV. Gravity drives the matter sector to Gaussian in the UV. Consistent with corpus statement: ``matter sector is Gaussian at joint FP.''
 \end{abstract}
 
 \section{Introduction}
@@ -85,7 +85,7 @@ A 4-scalar truncation ($g_N^* = 1.7621271$) was also tested. Result: \textbf{No 
 Script: \texttt{bridge\_d\_uv.py} (Phase 3 UV Completion). 4-scalar script: \texttt{bridge\_d\_uv\_4scalar.py}. Output: \texttt{bridge\_d\_uv\_4scalar\_output.json}. Dependencies: \texttt{mpmath}, \texttt{numpy}, \texttt{csv}. Computational cost: $\sim$1 second.
 
 \section{Conclusion}
-The scalar sector of MQGT-SCF is asymptotically free in the UV. The gravitational correction term $-(g_N/\pi)\lambda$ dominates matter self-interactions at high scales, driving all couplings to zero. This confirms the corpus statement that the ``matter sector is Gaussian at joint FP'' and removes the scalar sector as a UV completion barrier.
+The scalar sector of MQGT-SCF is asymptotically free in the UV throughout the perturbative domain (positivity cone, couplings $\lesssim 1$). The gravitational correction term $-(g_N/\pi)\lambda$ dominates matter self-interactions at high scales, driving all couplings to zero. This confirms the corpus statement that the ``matter sector is Gaussian at joint FP'' and removes the scalar sector as a UV completion barrier. (Exact non-Gaussian fixed points of the truncated beta system exist at $\lambda_1=\lambda_2=0.9c$, $g=0.3c$ and $\lambda_1=\lambda_2=g=c/2$, $c=16\pi g_N^*/3\approx 29.5$, far outside the one-loop validity domain and the searched cone; see erratum E1.)
 
 \bibliographystyle{plainnat}
 \bibliography{references}

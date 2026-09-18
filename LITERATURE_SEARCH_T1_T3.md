@@ -62,6 +62,10 @@ S7 = 1.748452 (coefficient of α³/56)
 S7' = 0.41364  (coefficient of α⁴/16)
 ```
 
+(superseded by erratum E3, 2026-09-17: S7 = ½ζ′(0) of coexact 3-forms on S⁷ = 1.74845220445;
+S7′ = −ζ′(0) of coexact 2-forms on S⁹ = 0.41364465819 — both confirmed to all quoted digits
+by independent 80-digit Hurwitz numerics)
+
 These are quoted as "paper-quoted spectral constants" - not derived in the paper.
 
 ### Beltrami Operator on S⁷
