@@ -22,6 +22,13 @@ It does not report an experiment. The archival PDFs, protocol, and original
 synthetic CSV are preserved. Their proposed corrections are documented in the
 Gate-1 note.
 
-T-1's eight-digit target and T-3's first-principles derivation remain open.
-The repository's existing T-1/T-3 workflow has a known T-1 failure; the
-dedicated Gate-1 workflow verifies only the new software checks.
+T-1 is a gated six-digit conjecture (Wyler–Nielsen α⁻¹ = 137.03608245,
+residual 6.0765×10⁻⁷ vs CODATA 2022) plus an exclusion record: fitted
+prefactors uncitable; the O(10⁻⁷) correction is not in the round-bundle
+spectrum (U(1) fiber isometry; Berger/canonical D1 lock). T-3 constants
+are identified as spectral determinants on S⁷ and S⁹ (E3). The
+repository's existing T-1/T-3 workflow still reports the known T-1
+failure; the dedicated Gate-1 workflow verifies only the new software
+checks. Full census: [Cbaird26/mqgt-scf-continued,
+artifacts/T1_E4_DEPOSIT_NOTE_2026-09-18.md](https://github.com/Cbaird26/mqgt-scf-continued/blob/main/artifacts/T1_E4_DEPOSIT_NOTE_2026-09-18.md)
+(commit `55ac384`).
