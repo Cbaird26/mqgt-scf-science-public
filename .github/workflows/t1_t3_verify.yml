@@ -14,8 +14,21 @@ jobs:
         run: python t1_hopf_final.py
       - name: Run T-3 Beltrami analysis
         run: python t3_beltrami_final.py
-      - name: Run T-1 gate (alpha^-1)
+      # T-1 is a documented negative result (see README): the volume-ratio identity
+      # misses CODATA by 6.08e-7 against a 1e-8 target, so this gate exits 1 by design.
+      # continue-on-error keeps that result on record while the T-3, UV-completion and
+      # neutrino checks below still run; the next step flags the outcome on the run page.
+      - name: Run T-1 gate (alpha^-1) - expected FAIL, see README
+        id: t1_gate
+        continue-on-error: true
         run: python tuft_alpha_identity.py
+      - name: Report T-1 gate outcome
+        run: |
+          if [ "${{ steps.t1_gate.outcome }}" = "success" ]; then
+            echo "::notice title=T-1 gate::PASSED. The README documents this gate as failing; update it."
+          else
+            echo "::warning title=T-1 gate::FAIL - the documented expected result (README). Check the step log if the cause looks different."
+          fi
       - name: Run T-3 gate (g-2)
         run: python tuft_gminus2_closed.py
       - name: Run T-3 spectral
