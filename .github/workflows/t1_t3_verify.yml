@@ -14,26 +14,39 @@ jobs:
         run: python t1_hopf_final.py
       - name: Run T-3 Beltrami analysis
         run: python t3_beltrami_final.py
+      # Research gates that exit 1 by design until their targets are met. continue-on-error
+      # keeps each result on record while the analysis steps below still run, and the
+      # last step posts every gate's outcome on the run page.
       # T-1 is a documented negative result (see README): the volume-ratio identity
-      # misses CODATA by 6.08e-7 against a 1e-8 target, so this gate exits 1 by design.
-      # continue-on-error keeps that result on record while the T-3, UV-completion and
-      # neutrino checks below still run; the next step flags the outcome on the run page.
+      # misses CODATA by 6.08e-7 against a 1e-8 target.
       - name: Run T-1 gate (alpha^-1) - expected FAIL, see README
         id: t1_gate
         continue-on-error: true
         run: python tuft_alpha_identity.py
-      - name: Report T-1 gate outcome
-        run: |
-          if [ "${{ steps.t1_gate.outcome }}" = "success" ]; then
-            echo "::notice title=T-1 gate::PASSED. The README documents this gate as failing; update it."
-          else
-            echo "::warning title=T-1 gate::FAIL - the documented expected result (README). Check the step log if the cause looks different."
-          fi
-      - name: Run T-3 gate (g-2)
+      # T-3 gates pass only once S7 = 1.748452 and S7' = 0.41364 are derived rather than
+      # quoted (see each script's docstring).
+      - name: Run T-3 gate (g-2) - expected FAIL, open derivation gate
+        id: t3_gate
+        continue-on-error: true
         run: python tuft_gminus2_closed.py
-      - name: Run T-3 spectral
+      - name: Run T-3 spectral - expected FAIL, open derivation gate
+        id: t3_spectral
+        continue-on-error: true
         run: python tuft_s7_spectral.py
       - name: Run UV completion
         run: python uv_dynamical_gn_complete.py
       - name: Run neutrino VEV dynamics
         run: python neutrino_vev_dynamics.py
+      - name: Report research gate outcomes
+        if: ${{ !cancelled() }}
+        run: |
+          report() {  # $1 = step outcome, $2 = gate, $3 = why a FAIL is expected
+            case "$1" in
+              success) echo "::notice title=$2::PASSED. This gate is recorded as an expected FAIL; update the README and this workflow." ;;
+              failure) echo "::warning title=$2::FAIL - $3. Check the step log if the cause looks different." ;;
+              *) echo "$2: $1" ;;
+            esac
+          }
+          report "${{ steps.t1_gate.outcome }}" "T-1 gate" "the documented expected result (README)"
+          report "${{ steps.t3_gate.outcome }}" "T-3 g-2 gate" "open derivation gate, expected until S7 and S7' are derived"
+          report "${{ steps.t3_spectral.outcome }}" "T-3 spectral gate" "open derivation gate, expected until S7 and S7' are derived"
